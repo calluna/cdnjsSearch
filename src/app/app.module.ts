@@ -1,17 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-// Search
 import { Injectable } from '@angular/core';
-import { Http, HttpModule } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Http, HttpModule, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
-
+import { Subject } from 'rxjs/Subject';
 
 import { SearchService } from './app.searchService';
-import { Subject } from 'rxjs/Subject';
+import { PagerService } from './app.pagerService';
 
 import { AppComponent } from './app.component';
 
@@ -25,7 +22,8 @@ import { AppComponent } from './app.component';
     HttpModule
   ],
   providers: [
-  	SearchService
+  	SearchService,
+  	PagerService
   ],
   bootstrap: [
   	AppComponent

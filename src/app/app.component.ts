@@ -1,7 +1,13 @@
-import { Component } from '@angular/core';
-// Search
-import { SearchService } from './app.searchService';
+import { Component, OnInit } from '@angular/core';
+import { Http, HttpModule, Headers, RequestOptions, Response } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
+import * as _ from 'underscore';
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
+
+import { SearchService } from './app.searchService';
+import { PagerService } from './app.pagerService';
+
 
 @Component({
   selector: 'app-root',
@@ -11,13 +17,35 @@ import { Subject } from 'rxjs/Subject';
 export class AppComponent {
   title = 'cdnJS search app';
 
-  results: Object;
+  private results: any[];
   searchTerm$ = new Subject<string>();
 
-  constructor(private searchService: SearchService) {
-    this.searchService.search(this.searchTerm$)
+  // pager object
+  pager: any = {};
+ 
+  // paged items
+  pagedItems: any[];
+
+  //subscribe to the searchService.search Observable, assign the results to a property called results
+  constructor(private searchService: SearchService, private pagerService: PagerService) {}
+  ngOnInit(){
+  	this.searchService.search(this.searchTerm$)
       .subscribe(results => {
         this.results = results.results;
+        // initialize to page 1
+        this.setPage(1);
       });
   }
+
+  setPage(page: number) {
+        if (page < 1 || page > this.pager.totalPages) {
+            return;
+        }
+ 
+        // get pager object from service
+        this.pager = this.pagerService.getPager(this.results.length, page);
+ 
+        // get current page of items
+        this.pagedItems = this.results.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    }
 }
