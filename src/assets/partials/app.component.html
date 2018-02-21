@@ -1,27 +1,45 @@
-<h1>Welcome to {{ title }}!</h1>
-<input
-    (keyup)="searchTerm$.next($event.target.value)">
-<section *ngFor="let item of pagedItems">
-  
-      {{ item.name }}
-
-
-</section>
+<article id="flex-container">
+  <header class="flex">
+    <h1>{{ title }}</h1>
+    <p>Looking for a link to a cdns file you need for your website or app? We can help you find the url for it with this app.</p>
+  </header>
+  <div class="flex results">
+    <h2>Type in any charachter or word to search a cdnjs link: </h2>
+    <input (keyup)="searchTerm$.next($event.target.value)">
+    <section class="resource" *ngFor="let item of pagedItems">
+      <p>Resource: {{ item.name }}</p>
+      <a target="_blank" href="{{ item.latest }}">
+        <span class="text">Download {{ item.name }}</span>
+        <span class="line -right"></span>
+        <span class="line -top"></span>
+        <span class="line -left"></span>
+        <span class="line -bottom"></span>
+      </a>
+      <!-- <a target="_blank" href="{{ item.latest }}">Download {{ item.name }}</a> -->
+    </section>
+  </div>
 <!-- pager -->
-  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-      <li [ngClass]="{disabled:pager.currentPage === 1}">
-          <a (click)="setPage(1)">First</a>
-      </li>
-      <li [ngClass]="{disabled:pager.currentPage === 1}">
-          <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-      </li>
-      <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+  <div class="flex" id="pager">
+    <div *ngIf="pager.pages && pager.pages.length" class="pagination">
+      <div>
+        <span [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(1)">First</a>
+        </span>
+        <span [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+        </span>
+      </div>
+      <span *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
           <a (click)="setPage(page)">{{page}}</a>
-      </li>
-      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-          <a (click)="setPage(pager.currentPage + 1)">Next</a>
-      </li>
-      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-          <a (click)="setPage(pager.totalPages)">Last</a>
-      </li>
-  </ul>
+      </span>
+      <div>
+        <span [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.currentPage + 1)">Next</a>
+        </span>
+        <span [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.totalPages)">Last</a>
+        </span>
+      </div>
+  </div>
+  </div>
+</article>

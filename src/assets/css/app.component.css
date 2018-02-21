@@ -1,0 +1,231 @@
+@font-face {
+    font-family: 'sinkin-thin';
+    src: url('/assets/fonts/sinkinsans-100thin-webfont.woff2') format('woff2'),
+         url('/assets/fonts/sinkinsans-100thin-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'sinkin-regular';
+    src: url('/assets/fonts/sinkinsans-400regular-webfont.woff2') format('woff2'),
+         url('/assets/fonts/sinkinsans-400regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+:host {
+  font-family: sinkin-regular, Helvetica, sans-serif;
+  font-size: 0.9em;
+  color: #555;
+  overflow-y: scroll;
+}
+h1, h2, h3 {
+	font-family: sinkin-thin, Helvetica, sans-serif;
+  	color: #555;
+}
+h1 {
+	font-size: 1.2em;
+	text-transform: uppercase;
+}
+header p {
+	font-size: 0.7em;
+	width: 80%;
+}
+h2 {
+	font-size: 0.9em;
+}
+a {
+	color: #eaa81a;
+	text-decoration: none;
+}
+ul {
+	list-style-type: none;
+}
+input {
+	border: 1px solid #d3dff5;
+    width: 200px;
+    height: 20px;
+    padding-left: 5px;
+    margin-bottom: 40px;
+}
+#flex-container {
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+	display: -webkit-flex;
+	flex-direction:         column;
+	-webkit-flex-direction: column;
+}
+.flex {
+	width: 80%;
+	margin: 10px auto;
+	padding: 20px;
+}
+header.flex {
+	order: 1;
+	padding-bottom: 0;
+}
+.flex.results {
+	border: 1px solid #eed111;
+	box-shadow: 0 1px 1px #b7b189;
+	order: 3;
+	padding-top: 3px;
+}
+#pager.flex {
+	order: 2;
+	font-family: 'sinkin-thin', sans-serif;
+	padding-top: 0;
+}
+.resource {
+	border-top: dotted 1px #eaa81a;
+	padding: 20px 0;
+}
+.resource a {
+	display: inline-block;
+	border: 3px solid transparent;
+	position: relative;
+	left: 20%;
+	cursor: pointer;
+	letter-spacing: 0.07em;
+	padding: 0.9em calc(0.9em * 1.2);
+	margin-bottom: 30px;
+}
+.resource a:after {
+	position: absolute;
+	content: '';
+	bottom: -3px;
+	left: calc(0.7em * 1.2);
+	right: calc(0.7em * 1.2);
+	height: 3px;
+	background: #eed111;
+	transition: transform 0.8s cubic-bezier(1, 0, 0.37, 1) 0.2s, right 0.2s cubic-bezier(0.04, 0.48, 0, 1) 0.6s, left 0.4s cubic-bezier(0.04, 0.48, 0, 1) 0.6s;
+	transform-origin: left;
+}
+.resource a .text {
+	transform: translate3d(0, 0.7em, 0);
+	display: block;
+	transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1) 0.4s;
+}
+.resource .line {
+	position: absolute;
+	background: #eed111;
+}
+.resource .line.-right, .resource .line.-left {
+	width: 3px;
+	bottom: -3px;
+	top: -3px;
+	transform: scale3d(1, 0, 1);
+}
+.resource .line.-top, .resource .line.-bottom {
+	height: 3px;
+	left: -3px;
+	right: -3px;
+	transform: scale3d(0, 1, 1);
+}
+.resource .line.-right {
+	right: -3px;
+	transition: transform 0.1s cubic-bezier(1, 0, 0.65, 1.01) 0.23s;
+	transform-origin: top;
+}
+.resource .line.-top {
+	top: -3px;
+	transition: transform 0.08s linear 0.43s;
+	transform-origin: left;
+}
+.resource .line.-left {
+	left: -3px;
+	transition: transform 0.08s linear 0.51s;
+	transform-origin: bottom;
+}
+.resource .line.-bottom {
+	bottom: -3px;
+	transition: transform 0.3s cubic-bezier(1, 0, 0.65, 1.01);
+	transform-origin: right;
+}
+.resource a:hover .text,
+.resource a:active .text {
+	transform: translate3d(0, 0, 0);
+	transition: transform 0.6s cubic-bezier(0.2, 0, 0, 1) 0.4s;
+}
+.resource a:hover:after,
+.resource a:active:after {
+	transform: scale3d(0, 1, 1);
+	right: -3px;
+	left: -3px;
+	transform-origin: right;
+	transition: transform 0.2s cubic-bezier(1, 0, 0.65, 1.01) 0.17s, right 0.2s cubic-bezier(1, 0, 0.65, 1.01), left 0s 0.3s;
+}
+.resource a:hover .line,
+.resource a:active .line {
+ 	transform: scale3d(1, 1, 1);
+}
+.resource a:hover .line.-right,
+.resource a:active .line.-right {
+	transition: transform 0.1s cubic-bezier(1, 0, 0.65, 1.01) 0.2s;
+	transform-origin: bottom;
+}
+.resource a:hover .line.-top,
+.resource a:active .line.-top {
+	transition: transform 0.08s linear 0.4s;
+	transform-origin: right;
+}
+.resource a:hover .line.-left,
+.resource a:active .line.-left {
+	transition: transform 0.08s linear 0.48s;
+	transform-origin: top;
+}
+.resource a:hover .line.-bottom,
+.resource a:active .line.-bottom {
+	transition: transform 0.5s cubic-bezier(0, 0.53, 0.29, 1) 0.56s;
+	transform-origin: left;
+}
+#pager span {
+	display: inline-block;
+	padding: 5px 20px 0 5px;
+	cursor: pointer;
+}
+#pager span.active {
+	cursor: text;
+}
+#pager span.active a {
+	color: #d3dff5;
+	font-weight: bold;
+}
+#pager span.disabled {
+	cursor: text;
+	color: #d3dff5;
+}
+#pager span.disabled a {
+	color: #d3dff5;
+}
+a.block {
+	display: block;
+}
+@media all and (min-width: 900px){
+	#flex-container {
+		max-width: 1200px;
+		-webkit-flex-direction: row;
+  		flex-direction:         row;
+	}
+	header.flex {
+		width: 30%;
+		order: 1;
+		padding-top: 0;
+		margin-right: 10px;
+	} 
+	header.flex h1 {
+		margin-top: 0;
+	}
+	.flex.results {
+		width: 50%;
+		order: 2;
+		margin-right: 10px;
+	} 
+	.resource a {
+		font-size: 0.7em;
+	}
+	#pager.flex {
+		width: 20%;
+		order: 3;
+	}
+}

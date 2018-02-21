@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, HttpModule, Headers, RequestOptions, Response } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
-import * as _ from 'underscore';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 
